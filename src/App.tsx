@@ -1,34 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import HomePage from './pages/HomePage';
+import ContactPage from './pages/ContactPage';
+import CompetencePage from './pages/CompetencePage';
+import EducationPage from './pages/EducationPage';
+import OtherPage from './pages/OtherPage';
+import {Loading}  from './pages/LoadingPage';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+// ---> Error pages
+const NotFoundPage = lazy(() => import('./pages/ErrorPage'));
 
+const helmetContext = {};
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <HelmetProvider context={helmetContext}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>React TS Boilerplate</title>
+          <link
+            rel="canonical"
+            href="https://reactts-boilerplate.netlify.app/"
+          />
+        </Helmet>
+
+        {/* <MainLayout> */}
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              {/* Static pages routes */}
+              <Route path={"/"} Component={HomePage} />
+              <Route path={"/Competence"} Component={CompetencePage} />
+              <Route path={"Contact"} Component={ContactPage} />
+              <Route path={"Edcation"} Component={EducationPage} />
+              <Route path={"Other"} Component={OtherPage} />
+
+              {/* Auth routes
+              <Route exact path={PATH.LOGIN} component={LoginPage} />
+              <Route exact path={PATH.REGISTER} component={RegisterPage} />
+              <PrivateRoute exact path={PATH.PROFILE} component={ProfilePage} /> */}
+
+              {/* Products routes */}
+              {/* <PrivateRoute
+                exact
+                path={PATH.PRODUCTS}
+                component={ProductListPage}
+              />
+              <PrivateRoute
+                exact
+                path={PATH.PRODUCT_NEW}
+                component={ProductNewPage}
+              />
+              <PrivateRoute
+                exact
+                path={PATH.PRODUCT_SHOW}
+                component={ProductItemPage}
+              />
+              <PrivateRoute
+                exact
+                path={PATH.PRODUCT_EDIT}
+                component={ProductEditPage}
+              /> */}
+
+              {/* Error routes */}
+              <Route Component={NotFoundPage} />
+            </Routes>
+          </Suspense>
+        {/* </MainLayout> */}
+      </HelmetProvider>
+    </BrowserRouter>
   )
 }
 
