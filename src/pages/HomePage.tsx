@@ -35,6 +35,10 @@ export default function HomePage() {
       };
     }, [playHoverSound]);
 
+    const onClick = useCallback((index: number)=> {
+      console.log('you click on', index)
+    }, []);
+
     return (
       <>
       <ul className="menu" ref={menuRef}>
@@ -42,7 +46,7 @@ export default function HomePage() {
         <IonIcon name="add-outline" />
       </div>
       {[
-        { icon: "home-outline", color: "#ff2972", index: 0 },
+        { icon: "ion:library-outline", color: "#ff2972", index: 0 },
         { icon: "settings-outline", color: "#fee800", index: 1 },
         { icon: "mail-outline", color: "#04fc43", index: 2 },
         { icon: "key-outline", color: "#fe00f1", index: 3 },
@@ -53,7 +57,7 @@ export default function HomePage() {
       ].map(({ icon, color, index }) => (
         <li key={index} style={{ '--i': index, '--clr': color } as React.CSSProperties}>
           <a href="#">
-            <IonIcon name={icon} />
+            <IonIcon icon={icon} onClick={() => onClick(index)}/>
           </a>
         </li>
       ))}
