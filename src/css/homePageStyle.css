@@ -91,6 +91,6 @@
     font-size: 32px;
     transition: 1.5s;
   }
-  .menu.active .menuToggle {
+  /* .menu.active .menuToggle {
     transform: rotate(315deg);
-  }
+  } */
