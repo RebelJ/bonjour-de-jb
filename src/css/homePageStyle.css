@@ -1,96 +1,157 @@
 * {
-    padding: 0;
-    margin: 0;
-  }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: #161616;
-  }
-  .menu {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .menu li {
-    position: absolute;
-    left: 0;
-    list-style: none;
-    transform: rotate(0deg) translateX(100px);
-    transform-origin: 130px;
-    transition: 0.5s;
-    transition-delay: calc(0.1s * var(--i));
-  }
-  .menu.active li {
-    transform: rotate(calc(360deg / 8 * var(--i)));
-  }
-  .menu a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    text-decoration: none;
-    font-size: 22px;
-    border-radius: 50%;
-    transform: rotate(calc(360deg / -8 * var(--i)));
-    transition: 1s;
-    color: transparent;
-    transition-delay: 0.5s;
-    filter: drop-shadow(0 0 2px var(--clr));
-  }
-  .menu.active a {
-    color: var(--clr);
-  }
-  .menu a::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--clr);
-    transform: rotate(calc(90deg * var(--i))) translate(0, 25px);
-    transition: width 0.5s, height 0.5s, transform 0.5s;
-    transition-delay: 0.5s, 1s, 1.5s;
-  }
-  .menu.active a::before {
-    width: 50px;
-    height: 50px;
-    background: #161616;
-    border: 2px solid var(--clr);
-    transform: rotate(calc(0 * var(--i)));
-    transition: transform 0.5s, height 0.5s, width 0.5s;
-    transition-delay: 0.5s, 1.5s, 1.5s;
-    border-radius: 10px;
-    filter: drop-shadow(0 0 5px var(--clr));
-    rotate: 135deg;
-  }
-  .menu.active li:hover a::before {
-    background: var(--clr);
-  }
-  .menu.active li:hover a ion-icon {
-    color: #161616;
-  }
-  
-  .menuToggle {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 32px;
-    transition: 1.5s;
-  }
-  /* .menu.active .menuToggle {
-    transform: rotate(315deg);
-  } */
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #161616;
+  overflow: hidden;
+}
+
+.menu {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu li {
+  position: absolute;
+  left: 0;
+  list-style: none;
+  transform: rotate(0deg) translateX(155px);
+  transform-origin: 200px;
+  transition: 0.5s;
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.menu.active li {
+  transform: rotate(calc(360deg / 8 * var(--i)));
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  text-decoration: none;
+  font-size: 36px;
+  border-radius: 50%;
+  transform: rotate(calc(360deg / -8 * var(--i)));
+  transition: 1s;
+  color: transparent;
+  transition-delay: 0.5s;
+  position: relative;
+  z-index: 12;
+}
+
+.menu a ion-icon,
+.menu a .mui-icon {
+  font-size: 36px;
+  transition: color 0.5s;
+  position: relative;
+  z-index: 13; /* Augmenté pour être au-dessus du fond de l'icône */
+}
+
+.menu.active a ion-icon,
+.menu.active a .mui-icon {
+  color: var(--clr);
+}
+
+.menu a::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--clr);
+  transform: rotate(calc(90deg * var(--i))) translate(0, 40px);
+  transition: width 0.5s, height 0.5s, transform 0.5s;
+  transition-delay: 0.5s, 1s, 1.5s;
+  z-index: 11; /* Passer les icons au dessus */
+}
+
+.menu.active a::before {
+  width: 80px;
+  height: 80px;
+  background: #161616;
+  border: 3px solid var(--clr);
+  transform: rotate(calc(0 * var(--i)));
+  transition: transform 0.5s, height 0.5s, width 0.5s;
+  transition-delay: 0.5s, 1.5s, 1.5s;
+  border-radius: 16px;
+  filter: drop-shadow(0 0 8px var(--clr));
+  rotate: 135deg;
+}
+
+.menu.active li:hover a::before {
+  background: var(--clr);
+}
+
+.menu.active li:hover a ion-icon,
+.menu.active li:hover a .mui-icon {
+  color: #161616;
+}
+
+.menuToggle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 52px;
+  transition: 1.5s;
+  /* background: #161616; */
+}
+
+.menu li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, var(--clr) 0%, transparent 70%);
+  transform: translate(-50%, -50%) rotate(calc(360deg / 8 * var(--i)));
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+/* 
+.menu.active li::after {
+  opacity: 0.1;
+} */
+
+.menu.active li:hover::after {
+  opacity: 1;
+}
+
+.schoolIcon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 13;
+  color: #ffffff;
+  font-size: 48px;
+  transition: 0.5s;
+}
+
+.menu.active .schoolIcon {
+  top: -60px;
+}
+
+
+
