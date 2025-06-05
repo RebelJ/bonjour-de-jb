@@ -61,15 +61,6 @@ export default function HomePage() {
     }
   }
   
-  // {icon === "schoolIcon" ? <SchoolIcon className="mui-icon" /> : <></>}
-  // {icon === "engineeringIcon" ? <EngineeringIcon className="mui-icon" /> : <></>}
-  // {icon === "terminalIcon" ? <TerminalIcon className="mui-icon" /> : <></>}
-  // {icon === "contactMailIcon" ? <ContactMailIcon className="mui-icon" /> : <></>}
-  // {icon === "sportsGymnasticsIcon" ? <SportsGymnasticsIcon className="mui-icon" /> : <></>}
-  // {icon === "bookmarksIcon" ? <BookmarksIcon className="mui-icon" /> : <></>}
-  // {icon === "barchart" ? <BarChartIcon className="mui-icon" /> : <></>}
-  // {icon === "videocam-outline" ? <VideoCameraFrontIcon className="mui-icon" /> : <></>} 
-  
     const menuItems = [
       { icon: "schoolIcon", color: "#ff2972", index: 0 },
       { icon: "engineeringIcon", color: "#fee800", index: 1 },
